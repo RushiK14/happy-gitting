@@ -120,5 +120,96 @@ genderDiff <- gender %>%
   head(10)
   
   ggplot(genderDiff,aes(State,genderDiff, fill = State)) + geom_col()
+
+
+#1 Question 1. Which State has the highest demographic of each voting population?
+
+```{r}
+census_demographic_merge <- census_demographic_merge %>%
+  group_by(State) %>%
+  mutate(total_votes_by_state = sum(total_votes))
+
+head(census_demographic_merge,5)
+
+```
+```{r}
+
+library(ggplot2)
+
+# Assuming your data frame is named 'your_data'
+census_demographic_new <- census_demographic_merge %>%
+  pivot_longer(cols = c(Hispanic, White, Black, Native, Pacific, Asian),
+               names_to = "Ethnicity",
+               values_to = "Votes")
+
+# Plotting
+ggplot(census_demographic_new, aes(x = Ethnicity, y = Votes, fill = State)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    x = "Ethnicity",
+    y = "Number of Votes",
+    title = "Number of Votes by Ethnicity for Each State"
+  ) +
+  theme_minimal()
+
+```
+```{r}
+#make a new colums that calculates the number of non voters
+
+# Assuming your data frame is named 'census_demographic_merge'
+census_demographic_merge <- census_demographic_merge %>%
+  mutate(non_voters = VotingPop - total_votes)
+
+# Print or view the updated data frame
+print(census_demographic_merge)
+
+```
+
+```
+```{r}
+#get 3 counties that have the highest number of non-voters and create a bar graph showing it
+
+# Assuming your data frame is named 'census_demographic_merge'
+library(dplyr)
+library(ggplot2)
+
+top3_non_voters_counties <- census_demographic_merge %>%
+  group_by(County) %>%
+  summarize(total_non_voters = sum(non_voters)) %>%
+  arrange(desc(total_non_voters)) %>%
+  slice_head(n = 3)
+
+# Plotting
+ggplot(top3_non_voters_counties, aes(x = reorder(County, -total_non_voters), y = total_non_voters, )) +
+  geom_bar(stat = "identity") +
+  labs(
+    x = "County",
+    y = "Number of Non-Voters",
+    title = "Top 3 Counties with the Highest Number of Non-Voters"
+  ) +
+  theme_minimal()
+
+
+
+
+```
+```{r}
+
+top3_total_voters_counties <- census_demographic_merge %>%
+  group_by(County) %>%
+  summarize(total_voters = sum(total_votes)) %>%
+  arrange(desc(total_voters)) %>%
+  slice_head(n = 3)
+
+# Plotting
+ggplot(top3_total_voters_counties, aes(x = reorder(County, -total_voters), y = total_voters)) +
+  geom_bar(stat = "identity") +
+  labs(
+    x = "County",
+    y = "Number of Total Voters",
+    title = "Top 3 Counties with the Highest Number of Total Voters"
+  ) +
+  theme_minimal()
+
 ```
 
