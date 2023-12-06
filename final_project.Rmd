@@ -1,0 +1,124 @@
+---
+title: "Final Project"
+output: html_document
+date: "2023-12-01"
+---
+
+```{r}
+library(tidyverse)
+
+demographic_data <- read_delim("acs2017_county_data.csv")
+us_census <- read_delim("president_county.csv")
+```
+
+Cleaning and Merging Data:
+```{r}
+demographic_data <- demographic_data %>% 
+  select(State, County, Men,TotalPop, Women, Hispanic, White, Black, Native, Asian, Pacific, "VotingPop" = VotingAgeCitizen)
+
+
+us_census <- us_census %>% 
+  select("State" = state, "County" = county, "Total_votes" = total_votes)
+
+census_demographic_merge <- left_join(us_census,demographic_data, by= c("State","County"))
+```
+
+**Data Documentation**
+
+The first dataset we used was the acs2017_county_data.csv file. We found this dataset at the
+following link: https://www.kaggle.com/datasets/muonneutrino/us-census-demographic-data. The
+data was collected by mounneutrino and taken from the 2015 American Community Survey 5-year
+estimates.
+
+The second dataset we used was the president_county.csv file. We found this dataset at the
+following link: 
+https://www.kaggle.com/datasets/unanimad/us-election-2020?select=president_county.csv. The
+data was collected by Raphael Fontes and taken from 2020 US Election data.
+
+We cleaned and merged these two datasets to create the dataset: census_demographic_merge.
+```{r}
+head(census_demographic_merge,3)
+```
+ This dataset has `r nrow(census_demographic_merge)` rows,`r ncol(census_demographic_merge)`,
+ columns, and the following number of missing values for each column:
+```{r}
+ colNA <- colSums(is.na(census_demographic_merge))
+colNA
+```
+
+The variables we will be using for this report are: `r names(census_demographic_merge)`.
+
+* State: represents the name of the state where the data was collected.
+* County: represents the name of the county where the data was collected.
+* Total_votes: represents the total amount of votes made in a county.
+* Men: represents the total number of men in the county.
+* TotalPop: represents the total number of people in the county.
+* Women: represents the total number of women in the county.
+* Hispanic: represents the total percentage of Hispanic/Latino people in the county.
+* White: represents the total percentage of white people in the county.
+* Black: represents the total percentage of black people in the county.
+* Native: represents the total percentage of Native Americans in the county.
+* Asian: represents the total percentage of Asians in the county.
+* Pacific: represents the total percentage of Pacific Islanders in the county.
+* VotingPop: represents the total number of people eligble to vote in the county.
+
+Question 1:
+
+
+
+
+
+
+Question 3: Identifying Male vs. Female dominant voter populations (by county and state)
+
+Here, I am calculating the number of men and women that voted in each county in the 2020 election.
+```{r}
+gender <- census_demographic_merge %>% 
+  select(State, Total_votes, County, Men, Women, VotingPop, TotalPop)
+
+gender <- gender %>% 
+  group_by(County) %>% 
+  mutate(femaleVoterPercentage = Women / TotalPop) %>% 
+  mutate(femaleVoters = round(femaleVoterPercentage * Total_votes)) %>% 
+  mutate(maleVoters = Total_votes - femaleVoters)
+```
+
+Now that I have found the number of voters of each gender, I can find what are the counties
+and states with the highest populations of male and female voters.
+
+Below are the 3 Counties with the largest Female Voter Populations:
+```{r}
+gender %>% 
+  arrange(desc(femaleVoterPercentage)) %>% 
+  select(State,County, femaleVoters, maleVoters) %>% 
+  head(3)
+```
+
+Below are the 3 States with the largest Female Voter Populations:
+```{r}
+# finds the states with the largest number of total female voters.
+stateFemaleVoters <- gender %>% 
+  group_by(State) %>% 
+  summarize(totalFemaleVoters = sum(femaleVoters, na.rm = TRUE)) %>% 
+  arrange(desc(totalFemaleVoters))
+head(stateFemaleVoters,3)
+
+
+# find the states with the largest the number of female majority voting counties
+test <- gender %>% 
+  group_by(State) %>% 
+  filter(femaleVoterPercentage > 0.5) %>% 
+  summarize(TotalFemaleMajCounties = sum(femaleVoters, na.rm = TRUE)) %>% 
+  arrange(desc(TotalFemaleMajCounties))
+head(test, 3)
+
+# find the states with the largest difference between male and female voters
+genderDiff <- gender %>% 
+  group_by(State) %>% 
+  summarize(genderDiff = sum(femaleVoters) - sum(maleVoters)) %>% 
+  arrange(desc(genderDiff)) %>% 
+  head(10)
+  
+  ggplot(genderDiff,aes(State,genderDiff, fill = State)) + geom_col()
+```
+
