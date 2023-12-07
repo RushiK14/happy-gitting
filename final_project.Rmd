@@ -4,109 +4,147 @@ output: html_document
 date: "2023-12-01"
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 # Introduction
 
 ##    Context
 
-##    Prior Information
+We chose this topic because the relationship between demographics and voting patterns offers
+valuable insight into understanding the influence of these trends on political outcomes in 
+the United States. Historically, the United States has witnessed shifts in racial, ethnic and
+gender compositions. These shifts have the potential to change the political landscape which
+directly influences voters. They’re especially significant for the 2020 presidential election
+due to heightened political tension, polarization, and its impact on the global political
+climate.
+
+Furthermore, politicians have utilized demographic data to shape their political campaigns.
+These political strategies require an understanding of this data to influence voting patterns
+and resonate with a diverse voter population. Also in 2020, social movements like “Black Lives
+Matter,” had a significant influence on voter engagement among different demographic groups
+which politicians had to analyze and adapt to. For example, research has shown that younger
+voters tend to have lower voter turnouts but heavily lean towards progressive politics while
+older voters show higher participation, but their political opinions can vary.
+
+Race and gender are pivotal factors that affect this data. Historically, groups part of these
+communities were confronted with barriers to voting and are a critical factor in analyzing 
+rising political engagement. Black and Hispanic communities tend to lean towards the Democratic
+party with rising voter turnout. Women’s voter turnout has been consistently higher than men
+for the last few decades and they’re voting priorities often differ from their counterparts.
+
+The 2020 US elections provided an opportunity to better understand these demographic trends
+and voting patterns. This project is designed to uncover broader patterns of barriers to
+voting through analyzing the relationships between race, gender, and voter turnout. We plan
+to identify three states or counties with the highest number of nonvoters and the top ten 
+states with the lowest overall voter turnout. This will show where voter engagement is 
+particularly low and uncover challenges specific to the demographic. We will be merging voter
+data from each county to determine the total number of voters by state, and this will provide
+a macro perspective on voter engagement. We will be answering these research questions 
+specifically: Does race impact the number of people voting in each area? What percentage of
+each demographic is voting? Is there a relationship between race and number of votes? Does 
+gender affect the number of voters in each state?
+
+This topic of the 2020 elections is interesting because it provides a new window into American
+politics. It had unprecedented voter turnout and intense political engagement from various 
+groups which offered an opportunity to study how social dynamics and movements affect voter
+turnout. Understanding how demographics affect voter turnout is especially important for 
+political scientists, sociologists, policy makers and the public. This knowledge is key to 
+shaping effective political strategies and making policies that resonate with the voters. It
+allows them to understand what motivates the population to participate in voting and what 
+doesn’t. For the public, this information will help them make informed decisions on how 
+their demographic identity influences their political decisions. Reading our report will 
+provide these groups with a detailed and nuanced analysis of the 2020 election data. They can
+use this report to gain a better understanding of the complexities of demographic influences
+and provide an analysis that goes beyond surface level observations. 
 
 ##    Questions
 
-##    Why (are we doing this report)
+### 1. Which states/counties have the highest number of non-voters?
+
+### 2. What is the race distribution of voters in the US census?
+
+### 3. Does gender affect the number of voters in each state?
 
 # Data
 
 ##    Why These Datasets
 
-##    Where The Data Came From (in data documentation)
+We chose these datasets because they provided comprehensive and detailed information from
+both county and census levels from across the United States. Both datasets allow for a deeper
+insight into understanding the correlation between demographics and voter behaviors and are
+crucial for political analysis. Data from the American Community survey (ACS) provided 
+demographic information regarding age, race and employment. The ACS data is derived from the
+American Factfinder website and is used by many across the nation as the primary source for 
+detailed demographic information from the entire country. The data held on the website was 
+collected by the US Census Bureau, a widely known and trusted source in the United States. 
+Since it is a product of a federal agency, it is not subject to any copyright and is fully 
+accessible to the public. The 2020 presidential election data provided information into voting
+patterns. It is not explicitly stated who collected the data, but it is a compilation of 
+official results from state and county offices which makes it a reliable resource.  
 
-##    Who Collected The Data  (in data documentation)
 
-##    Data Usage Permissions
+##    Data Information
 
-##    What Are Datasets About
+Both datasets were found on Kaggle which is a widely known website in the data science
+community that allows for data sharing and analysis. Kaggle’s policies make it clear that
+any dataset found on their platform should be used for noncommercial use only and not on
+behalf of any third party. The population of the dataset from the ACS is the United States
+including Puerto Rico. The sample is a subset of this population to make educated estimates
+about the population. The ACS did not survey every household in the United States. The 
+population of the dataset from the 2020 US Presidential election is the total number of 
+eligible voters in each county, regardless of whether they voted, across the United States
+in the 2020 Presidential election. There is no sample for this dataset because it is a 
+comprehensive record of the whole population. Both of these datasets provide a detailed 
+view of the United States population which is essential for understanding trends in demographics.
+
+Both datasets were found on Kaggle which is a widely known website in the data science 
+community that allows for data sharing and analysis. Kaggle’s policies make it clear that
+any dataset found on their platform should be used for noncommercial use only and not on
+behalf of any third party. The population of the dataset from the ACS is the United States
+including Puerto Rico. The sample is a subset of this population to make educated estimates
+about the population. The ACS did not survey every household in the United States. The 
+population of the dataset from the 2020 US Presidential election is the total number of 
+eligible voters in each county, regardless of whether they voted, across the United States
+in the 2020 Presidential election. There is no sample for this dataset because it is a 
+comprehensive record of the whole population. Both of these datasets provide a detailed view
+of the United States population which is essential for understanding trends in demographics.
+
+We found the ACS dataset, acs2017_county_data.csv, at the following link: 
+https://www.kaggle.com/datasets/muonneutrino/us-census-demographic-data. The
+data was collected by mounneutrino.
+
+We found the electio dataset, president_county.csv, at the following link: 
+https://www.kaggle.com/datasets/unanimad/us-election-2020?select=president_county.csv. The
+data was collected by Raphael Fontes.
 
 ##    Data Quality Issues
 
-##    Data Description (already done below in data documentation)
+While analyzing the data, there were some challenges with missing values and inconsistencies
+in data reporting between counties. When merging the two datasets, there were some discrepancies
+in how the demographic categories were defined. To manage these issues, we used data cleaning
+techniques and made sure to carefully interpret the data keeping these limitations in mind.
 
-# Methods
-
-##    What Did We Do (explain all data processing choices)
-
-##    Which Variables Did We Include, Why?
-
-##    How Did We Process Data
-
-##    How Did We select Our Sample
-
-##    Technical Decisions Made (ex. removing/replacing missing values)
-
-##    Did We Use More Complex Statistical Methods (no)
-
-# Results
-
-##    What The Data Tells Us
-
-# Findings
-
-##    What Do the Results Tell Us About Our Question/Story
-
-##    Limitations
-
-##    Future Work
-
-# Summary
-# Loading The Data
-```{r}
-library(tidyverse)
-
-demographic_data <- read_delim("acs2017_county_data.csv")
-us_census <- read_delim("president_county.csv")
-```
-
-# Cleaning and Merging Data
-```{r}
-demographic_data <- demographic_data %>% 
-  select(State, County, Men,TotalPop, Women, Hispanic, White, Black, Native, Asian, Pacific, "VotingPop" = VotingAgeCitizen)
-
-
-us_census <- us_census %>% 
-  select("State" = state, "County" = county, "TotalVotes" = total_votes)
-
-census_demographic_merge <- left_join(us_census,demographic_data, by= c("State","County"))
-```
-
-# Data Documentation
-
-We found both our datasets from the website Kaggle, an online data sharing website.
-
-The first dataset we used was the acs2017_county_data.csv file. We found this dataset at the
-following link: https://www.kaggle.com/datasets/muonneutrino/us-census-demographic-data. The
-data was collected by mounneutrino and taken from the 2015 American Community Survey 5-year
-estimates.
-
-The second dataset we used was the president_county.csv file. We found this dataset at the
-following link: 
-https://www.kaggle.com/datasets/unanimad/us-election-2020?select=president_county.csv. The
-data was collected by Raphael Fontes and taken from 2020 US Election data.
+##    Final Dataset
 
 We cleaned and merged these two datasets to create the dataset: census_demographic_merge.
-```{r}
-head(census_demographic_merge,3)
-```
- This dataset has `r nrow(census_demographic_merge)` rows,`r ncol(census_demographic_merge)`,
- columns, and the following number of missing values for each column:
-```{r}
- colNA <- colSums(is.na(census_demographic_merge))
-colNA
-```
 
-The variables we will be using for this report are: `r names(census_demographic_merge)`.
+###   Data Description
+
+The rows represent data about a US county (ex. King County, WA). There are 4633 observations
+and 15 variables in our final dataset. The variables State, County, TotalVotes, and
+total_votes_by_state have no missing values, while the variables Men, TotalPop, Women,
+Hispanic, White, Black, Native, Asian, Pacific, VotingPop, and non_voters have 1589 missing
+values. This can be explained by the data quality issues we experienced, where missing
+values were caused by problems with merging the datasets when there wasn't demographic
+information present about a County. 
+
+The variables we will be using for this report are:
 
 * State: represents the name of the state where the data was collected.
 * County: represents the name of the county where the data was collected.
-* Total_votes: represents the total amount of votes made in a county.
+* TotalVotes: represents the total amount of votes made in a county.
 * Men: represents the total number of men in the county.
 * TotalPop: represents the total number of people in the county.
 * Women: represents the total number of women in the county.
@@ -117,11 +155,41 @@ The variables we will be using for this report are: `r names(census_demographic_
 * Asian: represents the total percentage of Asians in the county.
 * Pacific: represents the total percentage of Pacific Islanders in the county.
 * VotingPop: represents the total number of people eligble to vote in the county.
+* total_votes_by_state: represents the total number of votes in each state.
+* non_voters: represents the total number of eligible voters that didn't vote in 2020.
 
-Question 1:
+# Methods
+
+### Loading The Data
+```{r}
+library(tidyverse)
+
+demographic_data <- read_delim("acs2017_county_data.csv")
+us_census <- read_delim("president_county.csv")
+```
+### Cleaning and Merging Data
+```{r}
+demographic_data <- demographic_data %>% 
+  select(State, County, Men,TotalPop, Women, Hispanic, White, Black, Native, Asian, Pacific, "VotingPop" = VotingAgeCitizen)
 
 
-#1 Question 1. Which State has the highest demographic of each voting population?
+us_census <- us_census %>% 
+  select("State" = state, "County" = county, "TotalVotes" = total_votes)
+
+census_demographic_merge <- left_join(us_census,demographic_data, by= c("State","County"))
+
+head(census_demographic_merge,3)
+```
+
+We included the variables State, County, Men,TotalPop, Women, Hispanic, White, Black, Native,
+Asian, Pacific, and VotingPop from the American Community Survey dataset. We included the 
+variables State, County, and TotalVotes from the election dataset. We used the County Variable
+as the main variable for merging the two datasets. We renamed variable names for convenience 
+and understanding as well as to enable proper merging. 
+
+## Question 1. Which State has the highest demographic of each voting population?
+
+First, akdjfasdklfjsdalkfjlks;df;jlksaljk;dsafasjlk;
 
 ```{r}
 census_demographic_merge <- census_demographic_merge %>%
@@ -153,7 +221,8 @@ ggplot(census_demographic_new, aes(x = Ethnicity, y = TotalVotes, fill = Ethnici
 
 ```
 
-# Question 2: Find the Top three counties in the country that have the highest ratio of non-voters to eligible voting population.
+## Question 2: Find the Top three counties in the country that have the highest ratio of non-voters to eligible voting population.
+
 ```{r}
 #make a new colums that calculates the number of non voters
 
@@ -188,7 +257,8 @@ ggplot(top3_non_voters_counties, aes(x = reorder(County, -total_non_voters),
   theme_minimal()
 ```
 
-# Plotting the ethnicity breakdown of the top 3 non-voting counties
+### Plotting the ethnicity breakdown of the top 3 non-voting counties
+
 ```{r}
 #for Los Angeles County
 
@@ -252,10 +322,18 @@ ggplot(harris_county_data_long, aes(x = Ethnicity, y = Votes, fill = Ethnicity))
 
 ```
 
-
 # Question 3: Identifying Male vs. Female dominant voter populations (by county and state)
 
+### Part 1
 Here, I am calculating the number of men and women that voted in each county in the 2020 election.
+I selected the variables State, TotalVotes, County, Men, Women, VotingPop, and TotalPop, into a new
+data frame to first derive the total number of female and male voters. To do this, I grouped by County
+and calculated the female population percentage by taking the number of women divided by the total 
+population. Then, I multiplied that by the number of total votes to find the proportion of votes that
+were women in each county. I rounded this value, and finally calculated by number of male voters. I
+didn't use more complex statistical methods, nor did I remove or replace missing values. Missing values
+did not affect my output. 
+
 ```{r}
 gender <- census_demographic_merge %>% 
   select(State, TotalVotes, County, Men, Women, VotingPop, TotalPop)
@@ -267,36 +345,86 @@ gender <- gender %>%
   mutate(maleVoters = TotalVotes - femaleVoters)
 ```
 
-Now that I have found the number of voters of each gender, I can find what are the counties
-and states with the highest populations of male and female voters.
+### Part 2
+Now that I found the number of voters of each gender, I could find what the counties and states
+are with the largest difference between male and female voters. To find these counties, I 
+arranged the data in descending order based on the percentage of the population that is 
+female, and selected the variables State, County, femaleVoters and MaleVoters, and returned
+the top 3 counties. I didn't use more complex statistical methods, nor did I remove or 
+replace missing values. Missing values did not affect my output. 
 
-Below are the 3 Counties with the largest Female Voter Populations:
+Below are the 3 Counties with the largest Female Voter Percentage:
 ```{r}
 gender %>% 
   arrange(desc(femaleVoterPercentage)) %>% 
-  select(State,County, femaleVoters, maleVoters) %>% 
+  select(State, County, femaleVoters, maleVoters, femaleVoterPercentage) %>% 
   head(3)
 ```
 
-Below are the 3 States with the largest Female Voter Populations:
+### Result
+The table shows us that the counties with the largest difference between female and male voters
+are Norton City in Virginia, Pulaski County in Georgia, and Owsley County in Kentucky. This shows
+us that these Counties have some of the highest voter turnouts from women. One thing to note is
+that they have relatively small populations, likely causing greater variation and a higher 
+percentage. 
+
+### Part 3
+To find the states with the largest female voter populations, I grouped the dataset by state,
+summarized the total number of female voters in each state, arranged the states in descending
+order based on the total number of female voters, and displayed the top 3 states with the
+largest female voter populations.
+
+Below are the 3 states with the largest Female Voter Populations:
 ```{r}
-# finds the states with the largest number of total female voters.
 stateFemaleVoters <- gender %>% 
   group_by(State) %>% 
   summarize(totalFemaleVoters = sum(femaleVoters, na.rm = TRUE)) %>% 
   arrange(desc(totalFemaleVoters))
 head(stateFemaleVoters,3)
 
+totalFemalePop <- stateFemaleVoters %>% 
+  summarize(overallTotal = sum(totalFemaleVoters))
+```
 
-# find the states with the largest the number of female majority voting counties
+### Result
+Here, the data tells us that California, Texas and Florida have the largest female voter 
+populations. These three states have a combined total of over 20 million women, a 
+significant portion of the population. Additionally, considering that the total number of
+female voters is `r totalFemalePop$overallTotal`, these three states make up a considerable
+percent of the total female voting population.
+
+### Part 4
+To find the states with the largest female majority voting counties, I identified states 
+where the percentage of female voters was greater than 50%, summarized the total number of
+counties in each state where females are the majority voters and displayed the top 3 states
+with the largest number of female majority voting counties.
+
+Below are the 3 states with the largest Female Majority Voting Counties:
+```{r}
 test <- gender %>% 
   group_by(State) %>% 
   filter(femaleVoterPercentage > 0.5) %>% 
   summarize(TotalFemaleMajCounties = sum(femaleVoters, na.rm = TRUE)) %>% 
   arrange(desc(TotalFemaleMajCounties))
 head(test, 3)
+```
 
-# find the states with the largest difference between male and female voters
+Here, the data shows that the states California, Florida, and Texas have the most counties
+where there are more women than men. This is interesting because it displays that women
+are being represented in politics and that their voice is being heard, as there are many
+counties where they make up the majority of the county population. In local elections for
+mayors, representatives and other political offices, women will and are able to ensure
+their voice in the political process.
+
+### Part 5
+To find the States with the largest difference in male and female voters, where they had
+more women than men, I calculated the difference between the total number of female voters
+and male voters in each state, arranged the states based on the gender difference, and 
+displayed the top 10 states with the largest gender differences in a bar plot.
+
+
+Below are the 10 States with the largest difference of male and female voters:
+```{r}
 genderDiff <- gender %>% 
   group_by(State) %>% 
   summarize(genderDiff = sum(femaleVoters) - sum(maleVoters)) %>% 
@@ -306,8 +434,26 @@ genderDiff <- gender %>%
   ggplot(genderDiff,aes(State,genderDiff, fill = State)) + geom_col()
 ```
 
+This data takes the previous part a step further, and goes past female majority counties to 
+look at female majority states, where we see some of the most populated states, like California
+New York and Florida. This plot shows that women have a signficant voice in the political
+process, as in some of the biggest states in the country, they have tens and even hundreds of
+thousands more votes than men. 
+
 # The Final Cleaned Dataset
+
+After completing all of our data manipulations, here we write the dataset as a csv file
+to download. We name the file voter_demographic.csv. 
 ```{r}
 write_csv(census_demographic_merge, file = "voter_demographic.csv")
 ```
 
+# Findings
+
+##    What Do the Results Tell Us About Our Question/Story
+
+##    Limitations
+
+##    Future Work
+
+# Summary
