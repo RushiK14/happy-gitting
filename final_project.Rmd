@@ -152,6 +152,8 @@ ggplot(census_demographic_new, aes(x = Ethnicity, y = TotalVotes, fill = Ethnici
   theme_minimal()
 
 ```
+
+# Question 2: Find the Top three counties in the country that have the highest ratio of non-voters to eligible voting population.
 ```{r}
 #make a new colums that calculates the number of non voters
 
@@ -165,43 +167,91 @@ print(census_demographic_merge)
 ```
 
 ```{r}
-#get 3 counties that have the highest number of non-voters and create a bar graph showing it
-
-# Assuming your data frame is named 'census_demographic_merge'
 top3_non_voters_counties <- census_demographic_merge %>%
   group_by(County) %>%
-  summarize(total_non_voters = sum(non_voters)) %>%
+  summarize(total_non_voters = sum(non_voters, na.rm = TRUE),
+            total_VotingPop = sum(VotingPop, na.rm = TRUE)) %>%
   arrange(desc(total_non_voters)) %>%
   slice_head(n = 3)
 
 # Plotting
-ggplot(top3_non_voters_counties, aes(x = reorder(County, -total_non_voters), y = total_non_voters, )) +
-  geom_bar(stat = "identity") +
+ggplot(top3_non_voters_counties, aes(x = reorder(County, -total_non_voters), 
+                                     fill = factor(c("VotingPop", "non_voters")))) +
+  geom_bar(aes(y = total_VotingPop), stat = "identity", position = "stack", fill = "pink") +
+  geom_bar(aes(y = total_non_voters), stat = "identity", position = "stack", fill = "purple") +
   labs(
     x = "County",
-    y = "Number of Non-Voters",
-    title = "Top 3 Counties with the Highest Number of Non-Voters"
+    y = "Count",
+    title = "Top 3 Counties with the Highest Number of Non-Voters and VotingPop"
   ) +
+  scale_fill_manual(values = c("VotingPop" = "pink", "non_voters" = "purple")) +
   theme_minimal()
 ```
-```{r}
 
-top3_total_voters_counties <- census_demographic_merge %>%
-  group_by(County) %>%
-  summarize(total_voters = sum(TotalVotes)) %>%
-  arrange(desc(total_voters)) %>%
-  slice_head(n = 3)
+# Plotting the ethnicity breakdown of the top 3 non-voting counties
+```{r}
+#for Los Angeles County
+
+# Filter data for Los Angeles County
+la_county_data <- census_demographic_merge %>%
+  filter(County == "Los Angeles County")
+
+# Pivot the data into long format for easier plotting
+la_county_data_long <- la_county_data %>%
+  pivot_longer(cols = c(Hispanic, White, Black, Native, Pacific, Asian),
+               names_to = "Ethnicity",
+               values_to = "Votes")
 
 # Plotting
-ggplot(top3_total_voters_counties, aes(x = reorder(County, -total_voters), y = total_voters)) +
+ggplot(la_county_data_long, aes(x = Ethnicity, y = Votes, fill = Ethnicity)) +
   geom_bar(stat = "identity") +
   labs(
-    x = "County",
-    y = "Number of Total Voters",
-    title = "Top 3 Counties with the Highest Number of Total Voters"
+    x = "Ethnicity",
+    y = "Number of Votes",
+    title = "Ethnicity Breakdown in Los Angeles County"
   ) +
   theme_minimal()
+
+#For Cook County
+cook_county_data <- census_demographic_merge %>%
+  filter(County == "Cook County")
+cook_county_data_long <- cook_county_data %>%
+  pivot_longer(cols = c(Hispanic, White, Black, Native, Pacific, Asian),
+               names_to = "Ethnicity",
+               values_to = "Votes")
+ggplot(cook_county_data_long, aes(x = Ethnicity, y = Votes, fill = Ethnicity)) +
+  geom_bar(stat = "identity") +
+  labs(
+    x = "Ethnicity",
+    y = "Number of Votes",
+    title = "Ethnicity Breakdown in Cook County"
+  ) +
+  theme_minimal()
+
+#For Harris County
+
+# Filter data for Harris County
+harris_county_data <- census_demographic_merge %>%
+  filter(County == "Harris County")
+
+# Pivot the data into long format for easier plotting
+harris_county_data_long <- harris_county_data %>%
+  pivot_longer(cols = c(Hispanic, White, Black, Native, Pacific, Asian),
+               names_to = "Ethnicity",
+               values_to = "Votes")
+
+# Plotting
+ggplot(harris_county_data_long, aes(x = Ethnicity, y = Votes, fill = Ethnicity)) +
+  geom_bar(stat = "identity") +
+  labs(
+    x = "Ethnicity",
+    y = "Number of Votes",
+    title = "Ethnicity Breakdown in Harris County"
+  ) +
+  theme_minimal()
+
 ```
+
 
 # Question 3: Identifying Male vs. Female dominant voter populations (by county and state)
 
