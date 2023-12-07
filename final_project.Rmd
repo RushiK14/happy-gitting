@@ -4,6 +4,60 @@ output: html_document
 date: "2023-12-01"
 ---
 
+# Introduction
+
+##    Context
+
+##    Prior Information
+
+##    Questions
+
+##    Why (are we doing this report)
+
+# Data
+
+##    Why These Datasets
+
+##    Where The Data Came From (in data documentation)
+
+##    Who Collected The Data  (in data documentation)
+
+##    Data Usage Permissions
+
+##    What Are Datasets About
+
+##    Data Quality Issues
+
+##    Data Description (already done below in data documentation)
+
+# Methods
+
+##    What Did We Do (explain all data processing choices)
+
+##    Which Variables Did We Include, Why?
+
+##    How Did We Process Data
+
+##    How Did We select Our Sample
+
+##    Technical Decisions Made (ex. removing/replacing missing values)
+
+##    Did We Use More Complex Statistical Methods (no)
+
+# Results
+
+##    What The Data Tells Us
+
+# Findings
+
+##    What Do the Results Tell Us About Our Question/Story
+
+##    Limitations
+
+##    Future Work
+
+# Summary
+# Loading The Data
 ```{r}
 library(tidyverse)
 
@@ -11,7 +65,7 @@ demographic_data <- read_delim("acs2017_county_data.csv")
 us_census <- read_delim("president_county.csv")
 ```
 
-Cleaning and Merging Data:
+# Cleaning and Merging Data
 ```{r}
 demographic_data <- demographic_data %>% 
   select(State, County, Men,TotalPop, Women, Hispanic, White, Black, Native, Asian, Pacific, "VotingPop" = VotingAgeCitizen)
@@ -23,7 +77,9 @@ us_census <- us_census %>%
 census_demographic_merge <- left_join(us_census,demographic_data, by= c("State","County"))
 ```
 
-**Data Documentation**
+# Data Documentation
+
+We found both our datasets from the website Kaggle, an online data sharing website.
 
 The first dataset we used was the acs2017_county_data.csv file. We found this dataset at the
 following link: https://www.kaggle.com/datasets/muonneutrino/us-census-demographic-data. The
@@ -197,3 +253,9 @@ genderDiff <- gender %>%
   
   ggplot(genderDiff,aes(State,genderDiff, fill = State)) + geom_col()
 ```
+
+# The Final Cleaned Dataset
+```{r}
+write_csv(census_demographic_merge, file = "voter_demographic.csv")
+```
+
