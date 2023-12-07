@@ -137,15 +137,17 @@ head(census_demographic_merge,5)
 census_demographic_new <- census_demographic_merge %>%
   pivot_longer(cols = c(Hispanic, White, Black, Native, Pacific, Asian),
                names_to = "Ethnicity",
-               values_to = "Votes")
+               values_to = "Votes") %>%
+  group_by(Ethnicity) %>%
+  summarize(TotalVotes = sum(Votes, na.rm = TRUE))
 
 # Plotting
-ggplot(census_demographic_new, aes(x = Ethnicity, y = Votes, fill = State)) +
-  geom_bar(stat = "identity", position = "dodge") +
+ggplot(census_demographic_new, aes(x = Ethnicity, y = TotalVotes, fill = Ethnicity)) +
+  geom_bar(stat = "identity") +
   labs(
     x = "Ethnicity",
-    y = "Number of Votes",
-    title = "Number of Votes by Ethnicity for Each State"
+    y = "Total Number of Votes",
+    title = "Total Number of Votes by Ethnicity Across States"
   ) +
   theme_minimal()
 
