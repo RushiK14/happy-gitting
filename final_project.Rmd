@@ -189,7 +189,10 @@ and understanding as well as to enable proper merging.
 
 ## Question 1. Which State has the highest demographic of each voting population?
 
-First, akdjfasdklfjsdalkfjlks;df;jlksaljk;dsafasjlk;
+Method:
+
+Grouping and Summarizing by State:
+First The census_demographic_merge data frame is grouped by the "State"  column. The mutate function is used to create a new column called "total_votes_by_state," which represents the sum of the "TotalVotes" column for each state.
 
 ```{r}
 census_demographic_merge <- census_demographic_merge %>%
@@ -199,6 +202,15 @@ census_demographic_merge <- census_demographic_merge %>%
 head(census_demographic_merge,5)
 
 ```
+Reshaping Data using Pivot:
+Then the census_demographic_merge data frame is reshaped using the pivot_longer function. The columns "Hispanic," "White," "Black," "Native," "Pacific," and "Asian" are pivoted into two columns: "Ethnicity" and "Votes."
+
+Grouping and Summarizing by Ethnicity:
+Following that, the reshaped data (census_demographic_new) is then grouped by the "Ethnicity" column. The summarize function calculates the total number of votes (TotalVotes) for each ethnicity, considering the "Votes" column.
+
+Plotting with ggplot2:
+Finally, A bar plot is created using ggplot with "Ethnicity" on the x-axis and "TotalVotes" on the y-axis. The fill aesthetic is set to "Ethnicity" for differentiating bars by ethnicity. Additional labels and theme adjustments are made to enhance the plot.
+In summary, the code aggregates and summarizes voting data first by state and then by ethnicity, and finally, it visualizes the total number of votes for each ethnicity across states using a bar plot.
 
 ```{r}
 
@@ -218,14 +230,19 @@ ggplot(census_demographic_new, aes(x = Ethnicity, y = TotalVotes, fill = Ethnici
     title = "Total Number of Votes by Ethnicity Across States"
   ) +
   theme_minimal()
-
 ```
+Results:
+We chose to answer this question so that we could visually see  which racial community has the highest power when it comes to influencing the election. Initially, we wanted to find the racial distribution for all states, but after making a bar graph with 50 states, we realized that it was too messy which made the information hard to read. After much deliberation, we decided to group by ethnicity instead of grouping by state and sum up total voters for each ethnicity across all 50 states. This gave us the graph pasted below which allows us to easily see that there is a disproportionate amount of white people that are eligible to vote compared to other minority groups such as Asian, Hispanic, Pacific, Native, and Black. 
+
 
 ## Question 2: Find the Top three counties in the country that have the highest ratio of non-voters to eligible voting population.
 
-```{r}
-#make a new colums that calculates the number of non voters
+Methods:
 
+Creating a New Column for Non-Voters:
+We created a new column called "non_voters" in the census_demographic_merge data frame using the mutate function. It calculates the number of non-voters by subtracting the "TotalVotes" column from the "VotingPop" column.
+
+```{r}
 # Assuming your data frame is named 'census_demographic_merge'
 census_demographic_merge <- census_demographic_merge %>%
   mutate(non_voters = VotingPop - TotalVotes)
@@ -234,6 +251,12 @@ census_demographic_merge <- census_demographic_merge %>%
 print(census_demographic_merge)
 
 ```
+
+Top 3 Non-Voting Counties Analysis:
+The code creates a new data frame named top3_non_voters_counties. It groups the data by "County" and calculates the total number of non-voters and total voting population (total_non_voters and total_VotingPop) for each county. The data frame is then arranged in descending order of total non-voters and the top 3 counties are selected using slice_head.
+
+Plotting Non-Voters and VotingPop for Top 3 Counties:
+A bar plot is created using ggplot to visualize the total non-voters and total voting population for the top 3 counties. The counties are reordered based on the total number of non-voters, and two stacked bars are used to represent "VotingPop" and "non_voters" with different fill colors.
 
 ```{r}
 top3_non_voters_counties <- census_demographic_merge %>%
@@ -256,8 +279,8 @@ ggplot(top3_non_voters_counties, aes(x = reorder(County, -total_non_voters),
   scale_fill_manual(values = c("VotingPop" = "pink", "non_voters" = "purple")) +
   theme_minimal()
 ```
-
-### Plotting the ethnicity breakdown of the top 3 non-voting counties
+Ethnicity Breakdown Plots for Top 3 Counties:
+For each of the top 3 counties (Los Angeles County, Cook County, Harris County), separate plots are created to show the ethnicity breakdown. Data for each county is filtered, pivoted into long format using pivot_longer, and then plotted using ggplot to visualize the number of votes for each ethnicity.
 
 ```{r}
 #for Los Angeles County
@@ -321,6 +344,11 @@ ggplot(harris_county_data_long, aes(x = Ethnicity, y = Votes, fill = Ethnicity))
   theme_minimal()
 
 ```
+In summary, the code first calculates and visualizes the number of non-voters, identifies the top 3 counties with the highest non-voter counts, and then provides ethnicity breakdown plots for these counties.
+
+Results:
+The analysis of voter and non-voter demographics revealed that Los Angeles County, Cook County, and Harris County emerged as the top three regions with the most substantial disparities between voters and non-voters. These counties exhibited a notable contrast in the number of individuals who participated in the electoral process and those who did not. The subsequent creation of three distinct graphs further illuminated the racial distribution within each of these counties. One intriguing observation was that the county with the most pronounced gap between voters and non-voters, namely Los Angeles County, demonstrated a Hispanic majority in its ethnic composition. This revelation adds a layer of complexity to the understanding of voting patterns and suggests that socio-demographic factors, such as ethnicity, play a significant role in voter engagement. The exploration of racial breakdowns provides valuable insights for policymakers and researchers seeking to comprehend the nuances of civic participation within diverse communities, ultimately contributing to more informed and targeted initiatives aimed at promoting inclusive electoral processes.
+
 
 # Question 3: Identifying Male vs. Female dominant voter populations (by county and state)
 
