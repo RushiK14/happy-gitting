@@ -480,33 +480,72 @@ write_csv(census_demographic_merge, file = "voter_demographic.csv")
 
 ##    What Do the Results Tell Us About Our Question/Story
 
-Our findings present a compelling narrative about the interrelation between demographics and voter turnout. The significant number of non-voters in populous counties like Los Angeles, Cook, and Harris suggests that despite the potential for a robust democratic process,  systemic, social, or psychological barriers persist in dissuading wide swathes of the population from participating. The striking racial disparities in voter turnout, particularly the underrepresentation of minority groups, may reflect lingering inequalities in access to voting or varying levels of voter mobilization efforts across different communities.
+Our findings present a compelling narrative about the interrelation between demographics and voter turnout. 
+The significant number of non-voters in populous counties like Los Angeles, Cook, and Harris suggests that 
+despite the potential for a robust democratic process,  systemic, social, or psychological barriers persist
+in dissuading wide swathes of the population from participating. The striking racial disparities in voter 
+turnout, particularly the underrepresentation of minority groups, may reflect lingering inequalities in 
+access to voting or varying levels of voter mobilization efforts across different communities.
 
-The gender analysis revealed that women's voter participation could be a decisive force in elections, a finding that aligns with recent trends showing increased political engagement among women. This trend holds profound implications for political campaigning and policy development, which must adapt to address the priorities and concerns of this crucial voter segment.
+The gender analysis revealed that women's voter participation could be a decisive force in elections, a 
+finding that aligns with recent trends showing increased political engagement among women. This trend 
+holds profound implications for political campaigning and policy development, which must adapt to address
+the priorities and concerns of this crucial voter segment.
 
-In the introduction, we set out to explore how demographic factors influence voter turnout. Our results affirm that both race and gender play a significant role in electoral participation. White voters are turning out in disproportionately higher numbers compared to other racial groups, and women are participating more than men in certain states. These patterns highlight the importance of considering demographic nuances in political analysis and strategy formulation.
+In the introduction, we set out to explore how demographic factors influence voter turnout. Our results 
+affirm that both race and gender play a significant role in electoral participation. White voters are 
+turning out in disproportionately higher numbers compared to other racial groups, and women are 
+participating more than men in certain states. These patterns highlight the importance of considering
+demographic nuances in political analysis and strategy formulation.
 
 
 ##    Limitations
 
-The study's limitations are primarily related to the scope of the data. The ACS data from 2015 might not entirely reflect the demographic shifts that occurred by the 2020 elections. Additionally, the voting data does not account for the nuances of voter suppression or other barriers that might affect turnout. Our claims must be contextualized within these data constraints, and while we can draw broad conclusions, the complexities of individual voter behavior are beyond our current analysis.
+The study's limitations are primarily related to the scope of the data. The ACS data from 2015 might not
+entirely reflect the demographic shifts that occurred by the 2020 elections. Additionally, the voting data
+does not account for the nuances of voter suppression or other barriers that might affect turnout. Our
+claims must be contextualized within these data constraints, and while we can draw broad conclusions, the 
+complexities of individual voter behavior are beyond our current analysis.
 
 
 ##    Future Work
 
-To deepen the understanding gleaned from this study, future research should incorporate more recent demographic data and consider the impact of new voter registration laws, changes in voting technology, and the effects of voter mobilization efforts. Qualitative research could provide insights into the personal experiences and perceptions of voters, particularly in communities with low voter turnout. Moreover, longitudinal studies could trace changes over multiple election cycles, offering a dynamic view of how demographic trends shape the political landscape over time. 
+To deepen the understanding gleaned from this study, future research should incorporate more recent 
+demographic data and consider the impact of new voter registration laws, changes in voting technology, 
+and the effects of voter mobilization efforts. Qualitative research could provide insights into the
+personal experiences and perceptions of voters, particularly in communities with low voter turnout.
+Moreover, longitudinal studies could trace changes over multiple election cycles, offering a dynamic 
+view of how demographic trends shape the political landscape over time.
 
 
 # Summary
 
-In our examination of the 2020 US elections, we have uncovered pivotal insights into the interplay between voter demographics and turnout. Our findings paint a picture of an electoral landscape shaped by significant disparities across racial and gender lines, suggesting that the story of American democracy is still very much one of unequal representation and participation.
+In our examination of the 2020 US elections, we have uncovered pivotal insights into the interplay between 
+voter demographics and turnout. Our findings paint a picture of an electoral landscape shaped by significant
+disparities across racial and gender lines, suggesting that the story of American democracy is still very 
+much one of unequal representation and participation.
 
-The substantial number of non-voters in populous counties highlights that barriers to voting remain entrenched in the system. This is not merely a reflection of voter apathy but possibly of deeper, systemic issues that prevent full electoral participation. The stark racial disparities revealed through our analysis, where minority groups are underrepresented at the polls, highlight an ongoing challenge to the ideal of equal voting access for all. Meanwhile, the gender analysis emphasizes the increasingly critical role of female voters, pointing to a changing electorate where women may well decide the outcomes of future elections.
+The substantial number of non-voters in populous counties highlights that barriers to voting remain entrenched 
+in the system. This is not merely a reflection of voter apathy but possibly of deeper, systemic issues that 
+prevent full electoral participation. The stark racial disparities revealed through our analysis, where minority
+groups are underrepresented at the polls, highlight an ongoing challenge to the ideal of equal voting access for
+all. Meanwhile, the gender analysis emphasizes the increasingly critical role of female voters, pointing to a 
+changing electorate where women may well decide the outcomes of future elections.
 
-Our research affirms the importance of considering demographic nuances when analyzing voter behavior. The disproportionately higher turnout among white voters, contrasted with the lower turnout among other racial groups, along with the pronounced participation of women, should inform not only political campaign strategies but also policy formulations aimed at enhancing voter engagement.
+Our research affirms the importance of considering demographic nuances when analyzing voter behavior. The 
+disproportionately higher turnout among white voters, contrasted with the lower turnout among other racial 
+groups, along with the pronounced participation of women, should inform not only political campaign strategies
+but also policy formulations aimed at enhancing voter engagement.
 
-As we look to the future, our work suggests a need for more current and granular data to better understand the dynamics at play. Incorporating recent demographic changes, examining the effects of voter mobilization efforts, and considering the impact of new voting laws will be crucial in painting a more accurate picture of the American electorate. Additionally, qualitative research into voters' personal experiences could provide a richer context to the patterns observed.
+As we look to the future, our work suggests a need for more current and granular data to better understand the 
+dynamics at play. Incorporating recent demographic changes, examining the effects of voter mobilization efforts,
+and considering the impact of new voting laws will be crucial in painting a more accurate picture of the American
+electorate. Additionally, qualitative research into voters' personal experiences could provide a richer context
+to the patterns observed.
 
-While progress has been made, much work remains to ensure that every eligible voter not only has the right to vote but the means and motivation to exercise it. Understanding and addressing the disparities in voter turnout is not just a matter of political interest but a pressing need for the health and future of American democracy.
+While progress has been made, much work remains to ensure that every eligible voter not only has the right to 
+vote but the means and motivation to exercise it. Understanding and addressing the disparities in voter turnout 
+is not just a matter of political interest but a pressing need for the health and future of American democracy.
+
 
 
