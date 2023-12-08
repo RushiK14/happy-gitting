@@ -1,0 +1,57 @@
+---
+title: "Data Documentation"
+output: html_document
+date: "2023-12-08"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Data Documentation
+
+```{r}
+library(tidyverse)
+
+demographic_data <- read_delim("acs2017_county_data.csv")
+us_census <- read_delim("president_county.csv")
+
+final_dataset <- read_delim("voter_demographic.csv")
+names(final_dataset)
+```
+
+We found the ACS dataset, acs2017_county_data.csv, at the following link: 
+https://www.kaggle.com/datasets/muonneutrino/us-census-demographic-data. The
+data was collected by mounneutrino.
+
+We found the election dataset, president_county.csv, at the following link: 
+https://www.kaggle.com/datasets/unanimad/us-election-2020?select=president_county.csv. The
+data was collected by Raphael Fontes.
+
+We merged the two datasets to create the dataset: voter_demographic.csv.
+
+Within our merged dataset, the rows represent data about a US county (ex. King County, WA).
+There are 4633 observations and 15 variables in our final dataset. The variables State, County,
+TotalVotes, and total_votes_by_state have no missing values, while the variables Men, TotalPop,
+Women, Hispanic, White, Black, Native, Asian, Pacific, VotingPop, and non_voters have 1589 
+missing values. This can be explained by the data quality issues we experienced, where missing
+values were caused by problems with merging the datasets when there wasn't demographic
+information present about a County. 
+
+The variables we will be using for this report are:
+
+* State: represents the name of the state where the data was collected.
+* County: represents the name of the county where the data was collected.
+* TotalVotes: represents the total amount of votes made in a county.
+* Men: represents the total number of men in the county.
+* TotalPop: represents the total number of people in the county.
+* Women: represents the total number of women in the county.
+* Hispanic: represents the total percentage of Hispanic/Latino people in the county.
+* White: represents the total percentage of white people in the county.
+* Black: represents the total percentage of black people in the county.
+* Native: represents the total percentage of Native Americans in the county.
+* Asian: represents the total percentage of Asians in the county.
+* Pacific: represents the total percentage of Pacific Islanders in the county.
+* VotingPop: represents the total number of people eligble to vote in the county.
+* total_votes_by_state: represents the total number of votes in each state.
+* non_voters: represents the total number of eligible voters that didn't vote in 2020.
