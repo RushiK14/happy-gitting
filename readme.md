@@ -1,4 +1,4 @@
-# AB 5 - Does Race and Gender affect voting? 
+# AB 5 - Does Race and Gender affect voting ? 
 
 Our study delved into the 2020 US election, focusing on the intricate relationship between demographics and voting patterns. We discovered that despite a record turnout, substantial numbers of eligible voters in counties such as Los Angeles, Cook, and Harris did not cast a ballot, hinting at underlying systemic issues. Notably, our analysis revealed that racial minorities are underrepresented among voters, and women are emerging as a decisive force in the electoral process.
 
